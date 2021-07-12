@@ -90,8 +90,29 @@ var createTaskEl = function(taskDataObj) {
 
   // add entire list item to list
   tasksToDoEl.appendChild(listItemEl);
+  
+  switch (taskDataObj.status) {
+    case "to do":
+      taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
+      tasksToDoEl.append(listItemEl);
+      break;
+    case "in progress":
+      taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 1;
+      tasksInProgressEl.append(listItemEl);
+      break;
+    case "completed":
+      taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 2;
+      tasksCompletedEl.append(listItemEl);
+      break;
+    default:
+      console.log("Something went wrong!");
+  }
+  // save tasks to localStorage
+  saveTasks();
 
-  taskIdCounter++; 
+  // increase task counter for next unique task id
+  taskIdCounter++;
+  
     
 };
 
@@ -169,10 +190,10 @@ var deleteTask = function(taskId) {
     if (tasks[i].id !== parseInt(taskId)) {
       updatedTaskArr.push(tasks[i]);
     }
-    saveTasks();
   }
   
-  console.log(deleteTask);
+  tasks = updatedTaskArr.push(tasks[i]);
+  saveTasks();
 }
 
 // function to edit tasks 
