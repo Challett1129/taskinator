@@ -100,7 +100,7 @@ var createTaskActions = function(taskId) {
   actionContainerEl.appendChild(deleteButtonEl);
 
   var statusSelectEl = document.createElement("select");
-  statusSelectEl.calssName = "select-status";
+  statusSelectEl.className = "select-status";
   statusSelectEl.setAttribute("name", "status-change"); 
   statusSelectEl.setAttribute("data-task-id", taskId); 
   var statusChoices = ["To Do", "In Progress", "Completed"];
